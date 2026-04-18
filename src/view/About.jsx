@@ -1,15 +1,19 @@
 import { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
-import { TagCloud } from '@frank-mayer/react-tag-cloud'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+
+const skillGroups = [
+  { label: 'Frontend', skills: ['React', 'JavaScript', 'TypeScript', 'CSS', 'HTML'] },
+  { label: 'Backend', skills: ['Node.js', 'Python', 'SQL', 'Bash'] },
+  { label: 'Tools', skills: ['Linux', 'Git', 'Figma', 'Homelab'] },
+  { label: 'Learning', skills: ['Cybersecurity', 'AI / LLMs', 'DevOps'] },
+]
+
 function About() {
-  // set up ref for about
   const about = useRef(null)
 
-  // register ScrollTrigger
   gsap.registerPlugin(ScrollTrigger)
 
-  // useEffect for gsap scrolltrigger
   useEffect(() => {
     let ctx = gsap.context(() => {
       gsap.timeline().from(about.current, {
@@ -28,52 +32,36 @@ function About() {
 
   return (
     <section id='about' ref={about} className='invisible flex justify-center items-center'>
-      <div className='max-w-5xl p-6 grid md:gap-8 grid-cols-1 md:grid-cols-2'>
-        <div className='flex flex-col pt-16 md:pt-0 text-center md:text-left justify-center items-start'>
-          <h2 className='md:pb-7 m-auto text-3xl md:text-7xl font-LeagueSpartan text-gray-800 mb-5'>
-            ABOUT ME <div className='line2 h-1.5 w-4/5 mx-auto bg-sky-400'></div>
+      <div className='max-w-5xl p-6 grid md:gap-12 grid-cols-1 md:grid-cols-2'>
+        <div className='flex flex-col pt-16 md:pt-0 justify-center'>
+          <h2 className='text-3xl md:text-7xl font-LeagueSpartan text-slate-100 mb-5'>
+            ABOUT ME
+            <div aria-hidden='true' className='line2 h-1.5 w-4/5 bg-sky-400 mt-2'></div>
           </h2>
-          <p className='md:pb-7 text-sm md:text-xl font-light font-lato text-gray-600'>
-            I am a Full Stack Developer who expertly combines professionalism with a dash of fun! I thrive on tackling challenges head-on, all while
-            fostering a collaborative team environment.
+          <p className='text-sm md:text-lg font-light font-lato text-slate-400 leading-relaxed'>
+            Self-taught developer and career changer. Years of managing teams in busy kitchens taught me more about staying calm, communicating clearly, and shipping under pressure than any classroom would.
           </p>
-          <p className='md:pb-7 text-sm md:text-xl font-light font-lato text-gray-600'>
-            My skill set spans a diverse range of front-end and back-end technologies, frameworks, and UI/UX design tools.
-          </p>
-          <p className='md:pb-7 text-sm md:text-xl font-light font-lato text-gray-600'>
-            My passion for continuous learning and collaboration drives me to excel in the ever-evolving world of web development. Join me on this
-            exhilarating journey!
+          <p className='text-sm md:text-lg font-light font-lato text-slate-400 leading-relaxed mt-4'>
+            I build full-stack web apps, run a Linux homelab, and I&apos;m actively learning cybersecurity and AI/LLM integration. I learn by building real things, not watching tutorials.
           </p>
         </div>
-        <div className='flex justify-center items-center'>
-          <TagCloud
-            options={w => ({
-              radius: Math.min(500, w.innerWidth, w.innerHeight) / 2,
-              maxSpeed: 'fast',
-            })}
-            className='text-gray-800 font-lato'
-          >
-            {[
-              'React',
-              'Python',
-              'JavaScript',
-              'Leadership',
-              'CSS',
-              'PHP',
-              'Tailwindcss',
-              'Communication',
-              'Git',
-              'Typescript',
-              'HTML',
-              'Node.js',
-              'Teamwork',
-              'SQL',
-              'JQuery',
-              'Bootstrap',
-              'GitHub',
-              'Figma',
-            ]}
-          </TagCloud>
+
+        <div className='flex flex-col justify-center gap-5 pt-10 md:pt-0'>
+          {skillGroups.map(group => (
+            <div key={group.label}>
+              <p className='text-xs font-lato font-light text-slate-500 uppercase tracking-widest mb-2'>{group.label}</p>
+              <div className='flex flex-wrap gap-2'>
+                {group.skills.map(skill => (
+                  <span
+                    key={skill}
+                    className='text-xs md:text-sm font-lato font-light text-slate-300 border border-slate-700 rounded px-3 py-1 hover:border-sky-500 hover:text-sky-400 transition-colors'
+                  >
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>

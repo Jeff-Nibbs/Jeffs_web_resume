@@ -5,11 +5,9 @@ import Portfolio from './view/Portfolio'
 import Contact from './view/Contact'
 import Footer from './view/Footer'
 import './fonts/league-spartan/LeagueSpartan-Bold.otf'
-import './App.css'
-
 function App() {
   return (
-    <div className=' overflow-hidden'>
+    <div className='overflow-hidden bg-slate-950 min-h-screen text-slate-100'>
       <Nav />
       <Hero />
       <About />
