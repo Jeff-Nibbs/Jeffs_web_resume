@@ -4,6 +4,11 @@
 
 @font-face {
   font-family: 'LeagueSpartan';
-  src: local('LeagueSpartan'), url('./fonts/league-spartan/LeagueSpartan-Bold.otf') format('truetype');
+  src: local('LeagueSpartan'), url('./fonts/league-spartan/LeagueSpartan-Bold.otf') format('opentype');
   font-weight: bold;
+}
+
+html, body {
+  background-color: rgb(2 6 23);
+  color: rgb(241 245 249);
 }

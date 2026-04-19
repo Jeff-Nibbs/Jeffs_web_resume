@@ -1,33 +1,19 @@
-import { useRef, useEffect } from 'react'
-import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { useRef } from 'react'
+import ButtonLink from './ButtonLink'
 
 function Contact() {
-  // set up ref for contact
   const contact = useRef(null)
 
-  // register ScrollTrigger
-  gsap.registerPlugin(ScrollTrigger)
-
-  //useEffect for gsap timeline
-  useEffect(() => {
-    let ctx = gsap.context(() => {}, contact)
-    return () => ctx.revert()
-  }, [])
   return (
     <section id='contact' ref={contact} className='flex justify-center items-center h-screen relative'>
       <div className='flex flex-col text-center gap-5'>
-        <h2 className='text-8xl pt-3.5 font-bold text-gray-800 font-LeagueSpartan'>LET&apos;S TALK</h2>
-        <p className='leading-snug w-4/5 md:w-3/5 mx-auto text-xl font-light font-lato text-gray-600'>
-          If you&apos;re interested in working together or have any feedback on my portfolio, feel free to get in touch. I&apos;d love to hear from
-          you!
+        <h2 className='text-8xl pt-3.5 font-bold text-slate-100 font-LeagueSpartan'>LET&apos;S TALK</h2>
+        <p className='leading-snug w-4/5 md:w-3/5 mx-auto text-xl font-light font-lato text-slate-400'>
+          I&apos;m actively looking for my next role in DevOps, infrastructure, security, or AI engineering. I&apos;m open to full-time positions, contract work, and conversations that might lead somewhere useful. No pitch required &mdash; just reach out.
         </p>
-        <a
-          href='mailto:danielnibbs100@gmail.com'
-          className='nav4 flex justify-center item-center border-2 rounded py-3 px-4 mt-6 mx-auto cursor-pointer text-sky-400 border-sky-500 hover:text-gray-50 hover:bg-sky-400'
-        >
+        <ButtonLink href='mailto:danielnibbs100@gmail.com' external={false} size='lg' className='mt-6 mx-auto'>
           SAY HELLO
-        </a>
+        </ButtonLink>
       </div>
     </section>
   )
